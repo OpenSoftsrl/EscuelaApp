@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EscuelaApp.MainPage"
+             xmlns:local="clr-namespace:EscuelaApp.ViewModels">
+
+    <StackLayout BackgroundColor="#2196F3">
+        
+        <BoxView HeightRequest="40"/>
+
+        <Label Text="La Escuelita" HorizontalTextAlignment="Center" 
+               HeightRequest="40"
+                   TextColor="White" FontSize="36"/>
+        
+        <BoxView HeightRequest="40"/>
+
+        <Frame Padding="20, 20, 20, 0" CornerRadius="30" VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="FillAndExpand">
+                <Button x:Name="btnAlumnos" 
+                Text="Alumnos" 
+                CornerRadius="20"
+                HorizontalOptions="Center"
+                WidthRequest="250"
+                Clicked="btnAlumnos_Clicked"/>
+
+                <Button x:Name="btnCarreras" 
+                Text="Carreras" 
+                CornerRadius="20"
+                HorizontalOptions="Center"
+                WidthRequest="250"
+                Clicked="btnCarreras_Clicked"/>
+
+                <Label FontSize="16" Padding="0,24,30,10"
+                       HorizontalOptions="Center" VerticalOptions="EndAndExpand">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Powered by: "/>
+                                <Span Text="Open" FontAttributes="Bold"/>
+                                <Span Text="Soft "/>
+                                <Span Text="s.r.l." FontSize="12"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+            </StackLayout>
+        </Frame>
+        
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             x:Class="EscuelaApp.Views.ListaCarrerasView"
+             Title="Carreras">
+    <ContentPage.Content>
+        <StackLayout Padding="5">
+            <Button x:Name="bntNuevaCarrera" CornerRadius="20"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"
+                    Text="Agregar Carrera"/>
+
+            <CollectionView ItemsSource="{Binding Carreras}"
+                            SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10, 5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding IdCarrera}" 
+                                   Padding="5"
+                                   HorizontalTextAlignment="End"/>
+                            <Label Grid.Column="1" 
+                                   Padding="5"
+                                   Text="{Binding Nombre}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--<ListView x:Name="lvCarreras" ItemsSource="{Binding Carreras}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Nombre}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+
+            <Button x:Name="bntSalir" CornerRadius="20"
+                    HorizontalOptions="Center"
+                    VerticalOptions="EndAndExpand"
+                    WidthRequest="200"
+                    Text="Salir"
+                    Clicked="bntSalir_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

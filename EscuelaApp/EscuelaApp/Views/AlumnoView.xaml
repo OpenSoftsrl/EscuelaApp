@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True"
+             x:Class="EscuelaApp.Views.AlumnoView"
+             xmlns:local="clr-namespace:EscuelaApp.ViewModels">
+    
+    <ContentPage.Content>
+        
+        <Grid Margin="10" RowSpacing="10" ColumnSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>                
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Text="Nombre"
+                   VerticalOptions="Center"/>
+            <Entry Grid.Column="1"
+                   Text="{Binding Nombre}"
+                   VerticalOptions="Center"/>
+
+            <Label Grid.Row="1"
+                   Text="Semestre" />
+            <Slider Grid.Row="1" Grid.Column="1"
+                    ThumbColor="Gray"
+                    Maximum="12" 
+                    Minimum="1" 
+                    Value="{Binding Semestre}"
+                    WidthRequest="200" HorizontalOptions="Start"
+                    HeightRequest="36" VerticalOptions="Start"/>
+
+            <Label Grid.Row="2"
+                   Text="Foto" />
+            <Entry Grid.Row="2" Grid.Column="1"
+                   Text="{Binding Foto}"
+                   WidthRequest="200" HorizontalOptions="Start"
+                   HeightRequest="36" VerticalOptions="Start"/>
+
+            <Label Grid.Row="3"
+                   Text="Fecha de ingreso" />
+            <DatePicker Grid.Row="3" Grid.Column="1"
+                        Date="{Binding FechaIngreso}"
+                        WidthRequest="200" HorizontalOptions="Start"
+                        HeightRequest="40" VerticalOptions="Start"/>
+
+            <ListView Grid.Row="4" Grid.ColumnSpan="2"
+                      SeparatorVisibility="None"
+                      Footer="-------------"
+                      ItemsSource="{Binding Carreras}"
+                      SelectedItem="{Binding CarreraSeleccionada, Mode=TwoWay}"
+                      HeightRequest="300"
+                      VerticalOptions="Start">
+                <ListView.Header>
+                    <StackLayout>
+                        <Label Text="Elige la carrera"
+                               BackgroundColor="Gray"
+                               TextColor="White"/>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Nombre}" TextColor="CadetBlue"/>
+                        <!--<ViewCell> EL VIEWCELL PEMITE INSERTAR ITEMS MÁS ELABORADOS EN EL LISTVIEW
+                            <StackLayout>
+                                <Label Text="{Binding Nombre}" TextColor="Green"/>
+                            </StackLayout>
+                        </ViewCell>-->
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--<Picker Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                    Title="Elige una carrera"
+                    TitleColor="Green"
+                    ItemsSource="{Binding Carreras}"
+                    ItemDisplayBinding="{Binding Nombre}"
+                    SelectedItem="{Binding CarreraSeleccionada}"
+                    TextColor="Orange"
+                    HeightRequest="200"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"
+                    FontAttributes="Italic">                
+            </Picker>-->
+
+            <StackLayout Grid.Row="5" Grid.ColumnSpan="2"
+                         Orientation="Horizontal" Spacing="10" HorizontalOptions="Center">
+                <Button x:Name="btnAgregar"
+                        Command="{Binding cmdAgregar}"
+                        Text="Agregar"
+                        IsVisible="{Binding EsAlumnoNuevo}"
+                        CornerRadius="20"
+                        BackgroundColor="LightBlue"
+                        TextColor="Orange"
+                        HorizontalOptions="Start"/>
+                <Button x:Name="btnActualizar"
+                        Command="{Binding cmdActualizar}"
+                        Text="Actualizar"
+                        IsVisible="{Binding NoEsAlumnoNuevo}"
+                        CornerRadius="20"
+                        BackgroundColor="LightBlue"
+                        TextColor="Orange"
+                        HorizontalOptions="Start"/>
+                <Button x:Name="btnEliminar"
+                        Command="{Binding cmdEliminar}"
+                        Text="Eliminar"
+                        IsVisible="{Binding NoEsAlumnoNuevo}"
+                        CornerRadius="20"
+                        BackgroundColor="LightBlue"
+                        TextColor="Orange"
+                        HorizontalOptions="Start"/>
+
+            </StackLayout>
+            
+            <Label Grid.Row="6" Grid.ColumnSpan="2"
+                   Text="{Binding Nombre, StringFormat='Alumno: {0}'}" />
+            <Label Grid.Row="7" Grid.ColumnSpan="2"
+                   Text="{Binding Semestre, StringFormat='Semestre académico: {0}'}" />
+            <Label Grid.Row="8" Grid.ColumnSpan="2"
+                   Text="Foto:" />
+            <Image Grid.Row="8" Grid.Column="1"
+                   HeightRequest="75" WidthRequest="75"
+                   Source="{Binding Foto}"
+                   Aspect="AspectFit"/>
+            <Label Grid.Row="9" Grid.ColumnSpan="2"
+                   Text="{Binding FechaIngreso, StringFormat='Fecha de ingreso: {0:dd - MMM - yyyy }'}" />
+            <Label Grid.Row="10" Grid.ColumnSpan="2"
+                   Text="{Binding CarreraSeleccionada.Nombre, StringFormat='Carrera seleccionada: {0}'}" />
+            <ActivityIndicator Grid.Row="11" Grid.ColumnSpan="2"
+                               HorizontalOptions="Center"
+                               IsRunning="{Binding IsBusy}"/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
